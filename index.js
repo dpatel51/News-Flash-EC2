@@ -32,10 +32,10 @@ app.listen(port, () => {
 //        //
 ////////////
 
-
 app.get('/', (req, res) => {
     res.status(200).header(header).send("Server Running at Port 3000");
 })
+
 
 app.get('/cat/:c', (req, res) => {
     const { c } = req.params;
@@ -76,21 +76,24 @@ app.get('/country/:country', (req, res) => {
 })
 
 
-app.get('/news/:query/:category', (req, res) => {
-    const { query } = req.params;
-    const { category } = req.params;
-    var url;
+app.get('/news/allnews', (req, res) => {
+    // const { query } = req.params;
+    // const { category } = req.params;
+    // var url;
 
-    if (category != null && query != null) {
-        url =
-            "https://newsapi.org/v2/top-headlines?q=" + query + "&category=" + category + "&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
-    } else if (category != null) {
-        url =
-            "https://newsapi.org/v2/top-headlines?category=" + category + "&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
-    } else {
-        url =
-            "https://newsapi.org/v2/top-headlines?q=" + query + "&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
-    }
+    // if (category != null && query != null) {
+    //     url =
+    //         "https://newsapi.org/v2/top-headlines?q=" + query + "&category=" + category + "&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
+    // } else if (category != null) {
+    //     url =
+    //         "https://newsapi.org/v2/top-headlines?category=" + category + "&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
+    // } else {
+    //     url =
+    //         "https://newsapi.org/v2/top-headlines?q=in&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
+    // }
+
+    url =
+    "https://newsapi.org/v2/top-headlines?country=in&sortBy=publishedAt&apiKey=f91f9ae4b85f41ff954bb7080170b604";
 
     axios
         .get(url)
